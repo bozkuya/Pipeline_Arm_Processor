@@ -4,10 +4,10 @@
 The pipelined processor with the hazard unit and the branch predictor. For this project the instruction set is extended with a few more instructions. The designed processor will be able to execute all instructions in the extended instruction set.
 The hazard unit that will be implemented for this project will handle two hazard types. Most of the
 design will be consistent with the implementation you have studied in the lectures. As a reminder, the
-list of the terms for hazard handling is given.
-• Flush: Clearing a stage register so that the result of that stage is discarded
-• Stall: Holding the value of a stage register so that a bubble can be introduced
-• Forward: Sending the calculated value to a previous stage
+list of the terms for hazard handling is given.<br>
+• Flush: Clearing a stage register so that the result of that stage is discarded<br>
+• Stall: Holding the value of a stage register so that a bubble can be introduced<br>
+• Forward: Sending the calculated value to a previous stage<br>
 Data hazards happen when an instruction tries to read a register that has not yet been written back
 by a previous instruction. There can be multiple methods to handle this hazard type even as simple as
 constant stalling. However, you can see that this implementation method will decrease the efficiency of
