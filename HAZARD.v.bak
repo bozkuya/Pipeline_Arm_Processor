@@ -1,0 +1,66 @@
+module HAZARD(
+  input wire clk,
+  input wire reset,
+  input wire MemtoRegE
+  input wire RegwriteW 
+  input wire CondEx
+  input wire PCSrcD
+  input wire PCSrcE
+  input wire PCSrcM 
+  input wire [4:0] ex_rd,    // destination register from EX stage
+  input wire [4:0] mem_rd,   // destination register from MEM stage
+  input wire ex_mem_regwrite, // register write signal from EX stage
+  input wire mem_wb_regwrite, // register write signal from MEM stage
+  output wire FlashD,
+  output wire FlashE,
+  output wire StallD,
+  output wire StallE,
+  output wire LDRStall,
+  output wire [1:0] ForwardAE,
+  output wire [1:0] ForwardBE
+);
+
+
+
+Match_1E_M = (RA1E == WA3M);
+Match_1E_W = (RA1E == WA3W);
+Match_2E_M = (RA1E == WA3M);
+Match_2E_M = (RA1E == WA3W);
+if(Match_1E_M*RegwriteM)
+begin
+ForwardAE=2'b10;
+end
+else if(Match_1E_W*RegwriteW)
+
+begin
+ForwardAE=2'b01;
+end
+
+else 
+ForwardAE=2'b00;
+
+
+
+if(Match_2E_M*RegwriteM)
+begin
+ForwardBE=2'b10;
+end
+
+else if(Match_2E_W*RegwriteW)
+begin
+ForwardBE=2'b01;
+end
+
+else 
+ForwardBE=2'b00;
+
+
+
+Match_12D_E = (RA1D ==WA3E) + (RA2D ==WA3E);
+LDRStall = Match_12D_E * MemtoRegE;
+BranchTakenE = BranchE * CondEx;
+PCWrPendingF = PCSrcD + PCSrcE + PCSrcM;
+StallF = LDRStall + PCWrPendingF;
+StallD = LDRStall;
+FlashD = PCWrPendingF + PCSrcW + BranchTakenE;
+FlashE = LDRStall + BranchTakenE;
