@@ -17,8 +17,7 @@ your design. Hence you are required to implement your hazard unit such that:
 Control hazards happen when the decision of what instruction to fetch next has not been made by the
 time the fetch takes place. In this project, different branch types will use different methods.
 • Branch operations that use immediate values (B, BL, and their conditional variants) will use branch
-predictor (see subsection 1.6 and lecture notes ”Ch4 2 BRANCH PREDICTION 2023”). However,
-the predictor can make wrong guesses in which case flushing the stages are also necessary
+predictor. However, the predictor can make wrong guesses in which case flushing the stages are also necessary
 • Branch operations that use register values (MOV r15, BX, and their conditional variants) will
 forward the new PC value to the fetch cycle and flush the wrong stages when the branch is
 taken. This should be implemented with a minimal amount of flushing while considering the
