@@ -49,6 +49,6 @@ Run the Cocotb-based testbench to verify the processor design.
 - Optimize the hazard unit for low-power consumption.
 
 ## Contribution
-Uğur Tokdam
-Yasincan Bozkurt
+- Uğur Tokdam
+- Yasincan Bozkurt
 
